@@ -87,14 +87,14 @@ function filterByRating(items: Item[]): Item[] {
     const result: Item[] = [];
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i].rating >= 4) {
-            result.push(items[i]);
+        const item = items[i];
+        if (item && item.rating >= 4) {
+            result.push(item);
         }
     }
 
     return result;
 }
-
 
 const books = [
   { title: "Book A", rating: 4.5 },
@@ -103,3 +103,44 @@ const books = [
 ];
 
 console.log(filterByRating(books));
+
+
+
+
+
+
+
+
+
+
+
+
+
+type User = {
+    id: number;
+    name: string;
+    email: string;
+    isActive: boolean;
+};
+
+function filterActiveUsers(users: User[]): User[] {
+    const activeList: User[] = [];
+
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        if (user?.isActive === true) {
+            activeList.push(user);
+        }
+    }
+
+    return activeList;
+}
+
+const users = [
+  { id: 1, name: "Rakib", email: "rakib@example.com", isActive: true },
+  { id: 2, name: "Asha", email: "asha@example.com", isActive: false },
+  { id: 3, name: "Rumi", email: "rumi@example.com", isActive: true }
+];
+
+console.log(filterActiveUsers(users));
+
