@@ -144,3 +144,142 @@ const users = [
 
 console.log(filterActiveUsers(users));
 
+
+
+
+
+
+
+
+
+interface Book {
+    title: string;
+    author: string;
+    publishedYear: number;
+    isAvailable: boolean;
+}
+
+function printBookDetails(book: Book): void {
+    const availableText = book.isAvailable ? "Yes" : "No";
+    console.log(
+        "Title: " + book.title +
+        ", Author: " + book.author +
+        ", Published: " + book.publishedYear +
+        ", Available: " + availableText
+    );
+}
+
+
+const myBook: Book = {
+  title: "The Great Gatsby",
+  author: "F. Scott Fitzgerald",
+  publishedYear: 1925,
+  isAvailable: true
+};
+
+printBookDetails(myBook);
+
+
+
+
+
+
+
+
+
+
+
+type Values = number | string;
+
+
+function getUniqueValues(a: Values[], b: Values[]): Values[] {
+    const result: (number | string)[] = [];
+
+    for (const val of a) {
+        if (val === undefined) continue;
+        let exists = false;
+        for (let j = 0; j < result.length; j++) {
+            if (result[j] === val) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            result.push(val);
+        }
+    }
+
+
+    for (const val of b) {
+        if (val === undefined) continue;
+        let exists = false;
+        for (let j = 0; j < result.length; j++) {
+            if (result[j] === val) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            result.push(val);
+        }
+    }
+
+    return result;
+}
+
+
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [3, 4, 5, 6, 7];
+
+console.log(getUniqueValues(array1, array2)); 
+
+
+
+
+
+
+
+
+
+
+
+
+type Product = {
+    name: string;
+    price: number;
+    quantity: number;
+    discount?: number; 
+};
+
+function calculateTotalPrice(products: Product[]): number {
+    if (products.length === 0) {
+        return 0;
+    }
+
+    const total = products
+        .map((product) => {
+            let productTotal = product.price * product.quantity;
+
+            if (product.discount) {
+                productTotal = productTotal - (productTotal * product.discount / 100);
+            }
+
+            return productTotal;
+        })
+        .reduce((acc, curr) => acc + curr, 0);
+
+    return total;
+}
+
+
+const products = [
+  { name: 'Pen', price: 10, quantity: 2 },
+  { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
+  { name: 'Bag', price: 50, quantity: 1, discount: 20 },
+];
+
+console.log(calculateTotalPrice(products));
+
+
+
+
